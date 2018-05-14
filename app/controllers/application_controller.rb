@@ -8,7 +8,28 @@ class ApplicationController < Sinatra::Base
 
   get '/' do 
 
-  	erb :index
+
+    if logged_in?
+      @explorer = session[:user_id]
+
+
+  	  erb :'/explorers/index'
+
+    else
+      erb :index
+    end 
+  end
+
+  helpers do
+
+    def logged_in?
+        !!session[:user_id]
+    end
+
+    def current_user
+        Explorer.find(session[:user_id].id)
+    end
+      
   end
 
 
