@@ -12,5 +12,6 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem 'rack-flash3'
+gem 'tux'
 
 
