@@ -4,19 +4,35 @@
 	<title></title>
 </head>
 <body>
-	<h1>Please fill out the form below to get started!</h1>
-	<form action="/signup" method="post">
-		<label>Username: </label>
-		<input type="text" name="username">
-		<label>Email address: </label>
-		<input type="text" name="email">
-		<label>Password: </label>
-		<input type="password" name="password">
+
+	<header class="header">
 		
 
+		
+	</header>
 
 
-		<input type="submit" name="submit">
-	</form>
+	<div clas="container">
+		<h1>Please fill out the form below to get started!</h1>
+		<form action="/signup" method="post">
+			<div class="form-row">
+				<label>Username: </label>
+				<input type="text" name="username">
+			</div>
+			<div class="form-row">
+				<label>Email address: </label>
+				<input type="text" name="email">
+			</div>
+			<div class="form-row">
+				<label>Password: </label>
+				<input type="password" name="password">
+			</div>
+			
+
+
+
+			<input type="submit" name="submit">
+		</form>
+	</div>
 </body>
 </html>
