@@ -11,5 +11,19 @@
 	<h2><%=@hotspring.directions%></h2>
 	<h2><%=@hotspring.description%></h2>
 
+	<h3>Comments:</h3>
+		<%@hotspring.comments.each do |comment| %>
+		<h3><%=comment.comment%></h3>
+		<h4>Author: <%=Explorer.find_by(id: comment.explorer_id).username%></h4>
+		<%end%>
+
+
+	<form action="/<%=@hotspring.id%>/comment" method="post">
+		<label>Add comment: </label>
+		<input type="text" name="comment">
+		
+		<input type="submit" name="submit">
+	</form>
+
 </body>
 </html>

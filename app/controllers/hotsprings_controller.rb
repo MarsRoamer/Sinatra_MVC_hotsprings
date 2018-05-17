@@ -53,6 +53,21 @@ class HotspringsController < ApplicationController
 
 	end
 
+		post "/:id/comment" do 
+		@comment = Comment.create(comment: params[:comment])
+		@comment.explorer = current_user
+		current_user.comments << @comment
+		@hotspring = Hotspring.find_by(id: params[:id])
+		@comment.hotspring = @hotspring
+		@hotspring.comments << @comment
+		
+		redirect to "/hotsprings/#{@hotspring.id}"
+
+
+
+	end
+
+
 	get '/hotsprings/:id' do 
 
 		if logged_in?
@@ -105,10 +120,8 @@ class HotspringsController < ApplicationController
 
 		 binding.pry
 		
-
-
-
 	end
+
 
 	
 
