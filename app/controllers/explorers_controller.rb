@@ -33,11 +33,11 @@ class ExplorersController < ApplicationController
 
 		@explorer = Explorer.find_by(username: params[:username])
 
-		if 
-			session[:user_id] = @explorer
+		if @explorer && @explorer.authenticate(params[:password])
+      		session[:user_id] = @explorer
 			redirect to "/"
 		else
-			
+			flash[:message] = "Error: Please provide valid credentials"
 			redirect to "/login"
 
 		end
