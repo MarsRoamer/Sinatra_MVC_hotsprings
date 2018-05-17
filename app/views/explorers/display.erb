@@ -6,7 +6,8 @@
 <body>
 	<h1>Explorer display page with all their posts to edit</h1>
 		<%@explorer.hotsprings.each do |hotspring| %>
-			<h2><a href="/hotsprings/<%=hotspring.id%>/edit"><%=hotspring.name%></a></h2>
+	
+	<h2><a href="/hotsprings/<%=hotspring.slug%>/edit"><%=hotspring.name%></a></h2>
 		<%end%>
 
 </body>

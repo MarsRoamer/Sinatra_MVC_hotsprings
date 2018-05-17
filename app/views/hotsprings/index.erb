@@ -6,7 +6,7 @@
 <body>
 	<h1>Browse all hotsprings index page</h1>
 		<%@hotsprings.each do |hotspring| %>
-			<h2>Hotspring Name: <a href="/hotsprings/<%=hotspring.id%>"><%=hotspring.name%></a>  Closest City: <%=hotspring.city%></h2>
+			<h2>Hotspring Name: <a href="/hotsprings/<%=hotspring.slug%>"><%=hotspring.name%></a>  Closest City: <%=hotspring.city%></h2>
 		<%end%>
 
 

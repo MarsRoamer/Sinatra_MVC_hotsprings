@@ -18,7 +18,7 @@ class HotspringsController < ApplicationController
 		@explorer.hotsprings << @hotspring
 		@explorer.save
 	
-		redirect to "/hotsprings/#{@hotspring.id}"
+		redirect to "/hotsprings/#{@hotspring.slug}"
 		
 
 	end
@@ -30,9 +30,8 @@ class HotspringsController < ApplicationController
 	end
 
 
-	get '/hotsprings/:id/edit' do 
-		@hotspring = Hotspring.find_by(id: params[:id])
-		
+	get '/hotsprings/:slug/edit' do 
+		@hotspring = Hotspring.find_by_slug(params[:slug])
 		
 		if logged_in? && current_user.id == @hotspring.explorer.id
 
@@ -43,9 +42,11 @@ class HotspringsController < ApplicationController
 
 	end
 
-	delete '/hotsprings/:id/delete' do 
+	delete '/hotsprings/:slug/delete' do 
 
-		@hotspring = Hotspring.find_by(id: params[:id])
+		@hotspring = Hotspring.find_by_slug(params[:slug])
+
+		# @hotspring = Hotspring.find_by(id: params[:id])
 		@hotspring.delete
 		redirect to "/display"
 
@@ -53,35 +54,47 @@ class HotspringsController < ApplicationController
 
 	end
 
-		post "/:id/comment" do 
-		@comment = Comment.create(comment: params[:comment])
-		@comment.explorer = current_user
-		current_user.comments << @comment
-		@hotspring = Hotspring.find_by(id: params[:id])
-		@comment.hotspring = @hotspring
-		@hotspring.comments << @comment
+	post "/:slug/comment" do
+
+		if params[:comment] == "" 
+			@hotspring = Hotspring.find_by_slug(params[:slug])
+			redirect to "/hotsprings/#{@hotspring.slug}"
+			
+		else
+			@comment = Comment.create(comment: params[:comment])
+			@comment.explorer = current_user
+			current_user.comments << @comment
+			@hotspring = Hotspring.find_by_slug(params[:slug])
+			# @hotspring = Hotspring.find_by(id: params[:id])
+			@comment.hotspring = @hotspring
+
+			@hotspring.comments << @comment
+		end
 		
-		redirect to "/hotsprings/#{@hotspring.id}"
+		redirect to "/hotsprings/#{@hotspring.slug}"
 
 
 
 	end
 
 
-	get '/hotsprings/:id' do 
+	get '/hotsprings/:slug' do 
 
 		if logged_in?
 
-			@hotspring = Hotspring.find_by(id: params[:id])
+			@hotspring = Hotspring.find_by_slug(params[:slug])
+			# @hotspring = Hotspring.find_by(id: params[:id])
 			erb :'hotsprings/show'
 		else
 			redirect to "/login"
 		end
 	end
 
-	patch '/hotsprings/:id' do
+	patch '/hotsprings/:slug' do
 
-		 @hotspring = Hotspring.find_by(id: params[:id])
+		 @hotspring = Hotspring.find_by_slug(params[:slug])
+
+		 # @hotspring = Hotspring.find_by(id: params[:id])
 
 		 if params[:name] != ""
 		 	@hotspring[:name] = params[:name]	 	
@@ -116,7 +129,7 @@ class HotspringsController < ApplicationController
 		 
 # 		 end
 # 		 @hotspring.save
-		 redirect to "/hotsprings/#{@hotspring.id}"
+		 redirect to "/hotsprings/#{@hotspring.slug}"
 
 		 binding.pry
 		
