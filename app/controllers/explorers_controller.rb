@@ -7,9 +7,15 @@ class ExplorersController < ApplicationController
 
 	post '/signup' do 
 
-	    @explorer = Explorer.create(username: params[:username], email: params[:email], password: params[:password])
-	    session[:user_id] = @explorer
-		erb :'explorers/index'
+		if params[:username] == "" || params[:email] == ""  || params[:password] == ""
+			flash[:message] = "Error: Please fill out all inputs"
+			redirect to "/signup"
+		else
+
+		    @explorer = Explorer.create(username: params[:username], email: params[:email], password: params[:password])
+		    session[:user_id] = @explorer
+			erb :'explorers/index'
+		end
 		
 	end
 
@@ -37,7 +43,7 @@ class ExplorersController < ApplicationController
 
 		if logged_in?
 			session.clear
-			redirect to "/login"
+			
 		end
 
 			redirect to "/"
