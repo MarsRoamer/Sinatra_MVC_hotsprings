@@ -1,8 +1,12 @@
 class ExplorersController < ApplicationController
 
 	get '/signup' do 
+		if logged_in?
+			redirect to "/display"
+		else
 
 		erb :'explorers/signup'
+		end
 	end
 
 	post '/signup' do 

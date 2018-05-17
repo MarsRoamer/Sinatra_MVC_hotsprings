@@ -4,6 +4,7 @@
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
+    border: 3px gray solid;
 }
 
 /* Links inside the navbar */
@@ -47,13 +48,20 @@ p {
 #content-container {
 	display: flex;
 	justify-content: center;
+    flex-direction: column;
 }
 
 #content-headline {
+    text-align: center;
 	align-content: center;
 	color: green;
 }
 
-h1 {
-	color: green;
+#contentp {
+    text-align: center;
 }
+
+.container {
+    margin-top: 100px;
+}
+

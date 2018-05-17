@@ -14,11 +14,11 @@
 
 
 	<h1>Individual Hotpsring show page</h1>
-	<h2><%=@hotspring.name%></h2>
-	<h2><%=@hotspring.city%></h2>
-	<h2><%=@hotspring.state%></h2>
-	<h2><%=@hotspring.directions%></h2>
-	<h2><%=@hotspring.description%></h2>
+	<h2>Name: <%=@hotspring.name%></h2>
+	<h2>Closest City: <%=@hotspring.city%></h2>
+	<h2>State: <%=@hotspring.state%></h2>
+	<h2>Directions: <%=@hotspring.directions%></h2>
+	<h2>Description: <%=@hotspring.description%></h2>
 
 	<h3>Comments:</h3>
 		<%@hotspring.comments.each do |comment| %>
