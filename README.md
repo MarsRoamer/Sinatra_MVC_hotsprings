@@ -6,13 +6,13 @@ This app is a conglomeration of user added hotspring locations. It is intended t
 
 To run this app:
 
-Clone the Repo
-Run Bundle Install
-Run rake db:migrate 
-Run rake db:seed to start with some initial content
-Run 'shotgun'
-Copy and paste the IP into your preferred web browser
-There are currently zero users, so please remember to create an account to play around. ;)
+Clone the Repo<br>
+Run Bundle Install<br>
+
+Run rake db:seed to start with some initial content<br>
+Run 'shotgun'<br>
+Copy and paste the IP into your preferred web browser<br>
+There are currently zero users, so please remember to create an account to play around. ;)<br>
 
 Contributing
 
